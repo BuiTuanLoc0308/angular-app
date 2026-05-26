@@ -1,28 +1,44 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth';
 import { LoginRequest } from '../models/login-request.model';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
-  loginData: LoginRequest = {
-    email: '',
-    password: '',
-  };
-
   message = '';
 
-  constructor(private authService: AuthService) {}
+  loginForm: FormGroup;
+
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+
+      password: ['', Validators.required],
+    });
+  }
 
   onLogin() {
-    const result = this.authService.login(this.loginData);
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+
+      this.message = 'Vui lòng nhập đầy đủ thông tin';
+
+      return;
+    }
+
+    const loginData: LoginRequest = this.loginForm.value;
+
+    const result = this.authService.login(loginData);
 
     if (result) {
       this.message = 'Đăng nhập thành công';

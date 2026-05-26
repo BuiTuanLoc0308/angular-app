@@ -2,19 +2,29 @@
   <div class="login-card">
     <h2>Login</h2>
 
-    <div class="form-group">
-      <label>Email</label>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label>Email</label>
 
-      <input type="email" [(ngModel)]="loginData.email" placeholder="Enter email" />
-    </div>
+        <input type="email" formControlName="email" placeholder="Enter email" />
 
-    <div class="form-group">
-      <label>Password</label>
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <small> Email không hợp lệ </small>
+        }
+      </div>
 
-      <input type="password" [(ngModel)]="loginData.password" placeholder="Enter password" />
-    </div>
+      <div class="form-group">
+        <label>Password</label>
 
-    <button (click)="onLogin()">Login</button>
+        <input type="password" formControlName="password" placeholder="Enter password" />
+
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <small>Password bắt buộc</small>
+        }
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
 
     <p class="message">
       {{ message }}
