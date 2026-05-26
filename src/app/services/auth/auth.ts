@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://api-edufa.b2ssolution.com/v1/auth/login';
+  private apiUrl = 'https://6a15332e91ff9a63de079ea8.mockapi.io/api/v1/login';
 
   constructor(private http: HttpClient) {}
 
