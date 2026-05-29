@@ -1,33 +1,50 @@
-<div class="login-container">
-  <div class="login-card">
-    <h2>Login</h2>
+<div class="main">
+  <div class="main-left">
+    <div class="background">
+      <div class="container">
+        <h1 class="text">Chào mừng bạn quay trở lại gian bếp!</h1>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="form-group">
-        <label>Email</label>
-
-        <input type="email" formControlName="email" placeholder="Enter email" />
-
-        @if (emailInvalid) {
-          <small> Email không hợp lệ </small>
-        }
+        <div class="text">
+          Đăng nhập để tiếp tục khám phá hàng ngàn công thức nấu ăn ngon từ cộng đồng
+          CulinaryFriend.
+        </div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Password</label>
+    <img class="background-image" src="images/bg-img.png" alt="background-image" />
+  </div>
 
-        <input type="password" formControlName="password" placeholder="Enter password" />
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Login</h2>
 
-        @if (passwordInvalid) {
-          <small>Password bắt buộc</small>
-        }
-      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label>Email</label>
 
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
+          <input type="email" formControlName="email" placeholder="Enter email" />
 
-    <p class="message">
-      {{ message }}
-    </p>
+          @if (emailInvalid) {
+            <small> Email không hợp lệ </small>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <input type="password" formControlName="password" placeholder="Enter password" />
+
+          @if (passwordInvalid) {
+            <small>Password bắt buộc</small>
+          }
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      </form>
+
+      <p class="message">
+        {{ message }}
+      </p>
+    </div>
   </div>
 </div>

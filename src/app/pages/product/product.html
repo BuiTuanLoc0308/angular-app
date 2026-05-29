@@ -1,0 +1,13 @@
+<div>
+  <h1>Product Work</h1>
+
+  @for (item of products; track $index) {
+    <div>
+      <h3>{{ item.productName }}</h3>
+
+      <p>{{ item.id }}</p>
+
+      <p>{{ item.quality }}</p>
+    </div>
+  }
+</div>

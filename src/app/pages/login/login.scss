@@ -1,5 +1,56 @@
+.main {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 51px;
+  margin-bottom: 51px;
+  margin-right: 24px;
+  margin-left: 24px;
+}
+
+.main-left {
+  position: relative;
+}
+
+.main-left .container {
+  position: absolute;
+
+  margin: 64px;
+
+  bottom: 20px;
+}
+
+.main-left .text {
+  color: white;
+}
+
+.main-left .background-image {
+  height: 820px;
+  width: 610px;
+
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.main-right {
+  padding: 64px;
+
+  background-color: white;
+
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.main-right .app-logo {
+  height: 64px;
+  width: 64px;
+}
+
 .login-container {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +58,7 @@
 }
 
 .login-card {
-  width: 350px;
+  height: 100%;
   padding: 30px;
   background: white;
   border-radius: 12px;

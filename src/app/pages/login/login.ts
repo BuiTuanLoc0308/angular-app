@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth';
 import { LoginRequest } from '../../models/login-request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
+    private router: Router,
   ) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
@@ -61,6 +63,8 @@ export class LoginComponent {
       // thanh cong
       next: (response) => {
         this.message = 'Đăng nhập thành công';
+
+        this.router.navigate(['/home']);
       },
 
       // loi
