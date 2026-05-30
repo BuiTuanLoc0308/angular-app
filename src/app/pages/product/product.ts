@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductRequest } from '../../models/product-request.model';
 import { ProductService } from '../../services/products/product';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -10,26 +11,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
-export class ProductComponent implements OnInit {
-  products: ProductRequest[] = [];
+export class ProductComponent {
+  products$: Observable<ProductRequest[]>;
 
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.getProducts();
-  }
-
-  getProducts() {
-    this.productService.getProducts().subscribe({
-      next: (response) => {
-        console.log(response);
-
-        this.products = response;
-      },
-
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  constructor(private productService: ProductService) {
+    this.products$ = this.productService.getProducts();
   }
 }

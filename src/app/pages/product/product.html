@@ -1,13 +1,19 @@
 <div>
   <h1>Product Work</h1>
 
-  @for (item of products; track $index) {
-    <div>
-      <h3>{{ item.productName }}</h3>
+  @if (products$ | async; as products) {
+    <p>Length: {{ products.length }}</p>
 
-      <p>{{ item.id }}</p>
+    @for (item of products; track item.id) {
+      <div>
+        <h3>Name: {{ item.productName }}</h3>
 
-      <p>{{ item.quality }}</p>
-    </div>
+        <p>Id: {{ item.id }}</p>
+
+        <p>Quality: {{ item.quality }}</p>
+      </div>
+    }
+  } @else {
+    <p>Loading...</p>
   }
 </div>
